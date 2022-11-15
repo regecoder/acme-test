@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "b722c5c2-79ae-42a7-8bd8-d79aece6ddf2",
+		"name": "acme-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3369572"
+	},
+	"item": [
+		{
+			"name": "Add promocode",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{\n  \"_id\": \"...\",\n  \"name\": \"WeatherCode\",\n  \"avantage\": { \"percent\": 20 },\n  \"restrictions\": [\n    {\n      \"@date\": {\n        \"after\": \"2019-01-01\",\n        \"before\": \"2020-06-30\"\n      }\n    },\n    {\n      \"@and\": [\n        {\n          \"@age\": {\n            \"eq\": 40\n          }\n        },\n        {\n          \"@and\": [\n            {\n              \"@age\": {\n                \"lt\": 30,\n                \"gt\": 15\n              }\n            },\n            {\n              \"@meteo\": {\n                \"is\": \"clear\",\n                \"temp\": {\n                  \"gt\": \"15\"\n                }\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/promocode",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"promocode"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate promocode",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{\n  \"promocode_name\": \"WeatherCode\",\n  \"arguments\": {\n    \"age\": 35,\n    \"meteo\": { \"town\": \"Lyon\" }\n  }\n}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/promocode/validate",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"promocode",
+						"validate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
